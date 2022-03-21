@@ -4,7 +4,7 @@ from typing import Dict
 
 from fastapi import FastAPI
 
-from .routes import storage
+from .routers import storage
 
 logging.basicConfig(encoding='utf-8', level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
