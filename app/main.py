@@ -11,9 +11,9 @@ logging.basicConfig(encoding='utf-8', level=logging.INFO,
 logger = logging.getLogger(__file__)
 
 app = FastAPI(
-    title='Your Fruit Self Service',
+    title='Storage API',
     version='1.0.0',
-    description='Order your fruits here',
+    description='Store your files here',
     root_path=''
 )
 
