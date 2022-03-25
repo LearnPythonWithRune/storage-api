@@ -14,12 +14,12 @@ storage_path = 'my_storage'
 
 
 @router.post('/create_file', status_code=HTTPStatus.OK)
-async def create_file(filename: str, file_data: str):
+async def create_file(filename: str, file_data: str) -> JSONResponse:
     filename = join(storage_path, filename)
     with open(filename, 'w') as f:
         f.write(file_data)
     logger.info(f'Created file: {filename}')
-    return {'Create': 'OK'}
+    return JSONResponse({'Create': 'OK'})
 
 
 @router.post('/delete_file', status_code=HTTPStatus.OK)
@@ -48,7 +48,7 @@ async def download_file(filename: str) -> FileResponse:
 @router.get('/list_files', status_code=HTTPStatus.OK, response_class=JSONResponse)
 async def list_files() -> JSONResponse:
     files = os.listdir(storage_path)
-    files = [f for f in files if isfile(join(storage_path, f))]
+    files = [f for f in files if isfile(join(storage_path, f)) and not f.startswith('.')]
     logger.info(f'Listed files: {files}')
     return JSONResponse([{'files': files}])
 
